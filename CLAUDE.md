@@ -230,17 +230,10 @@ YT Transcription Extractor/
 ├── batch.py                     # Batch processing CLI
 ├── course_builder.py            # Collection management CLI
 ├── config.yaml                  # Unified configuration
-│
-├── docs/                        # Documentation
-│   ├── README.md
-│   ├── CHANGELOG.md
-│   └── CLAUDE.md
-│
-├── data/                        # All data files
-│   ├── transcripts.db
-│   ├── exports/<collection>/
-│   ├── logs/                    # Log files
-│   └── batch_state/             # Batch checkpoints
+├── README.md                    # Documentation
+├── CHANGELOG.md                 # Version history
+├── CLAUDE.md                    # This file (AI context)
+├── LICENSE                      # MIT License
 │
 ├── src/                         # Core extraction module
 │   ├── database.py              # With context managers
@@ -254,12 +247,22 @@ YT Transcription Extractor/
 │   └── batch_processor.py       # Batch processing
 │
 ├── course_builder/              # Collection management module
-└── _archive/                    # Archived/legacy files
+│
+├── data/                        # All data files (gitignored)
+│   ├── transcripts.db
+│   ├── exports/<collection>/
+│   ├── logs/
+│   └── batch_state/
+│
+├── examples/                    # Example files
+│   └── videos.txt               # Sample video list
+│
+└── _archive/                    # Archived/legacy files (gitignored)
 ```
 
 ## Recent Changes
 
-See `docs/CHANGELOG.md` for detailed history. Key updates:
+See `CHANGELOG.md` for detailed history. Key updates:
 - **Major refactoring** with proper error handling, logging, and resilience
 - Custom exception hierarchy in `src/exceptions.py`
 - Structured logging with rotation in `src/logging_config.py`
