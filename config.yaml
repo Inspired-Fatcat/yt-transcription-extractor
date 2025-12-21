@@ -1,0 +1,89 @@
+# YT Transcription Extractor Configuration
+# ==========================================
+# This file contains all configurable settings for the extraction system.
+# Override individual settings via environment variables prefixed with YTE_
+# (e.g., YTE_DATABASE__PATH for database.path)
+
+database:
+  # Path to SQLite database file
+  path: "data/transcripts.db"
+
+extraction:
+  # Default delay between requests (seconds)
+  # IMPORTANT: Use 60+ seconds for bulk extraction to avoid rate limiting
+  delay_between_requests: 1.0
+
+  # Maximum retry attempts for failed requests
+  max_retries: 3
+
+  # Exponential backoff multiplier for retries
+  retry_backoff_factor: 2.0
+
+  # Initial retry delay in seconds
+  retry_initial_delay: 1.0
+
+  # Maximum retry delay in seconds
+  retry_max_delay: 60.0
+
+  # Timeout for HTTP requests (seconds)
+  timeout_seconds: 30
+
+  # Default transcript languages (in preference order)
+  default_languages:
+    - "en"
+
+batch:
+  # Number of videos to process before taking a longer break
+  batch_size: 10
+
+  # Delay between individual videos (seconds)
+  delay_between_videos: 60
+
+  # Delay between batches (seconds)
+  delay_between_batches: 120
+
+  # Directory for batch state files (for resume support)
+  state_directory: "data/batch_state"
+
+  # Enable graceful shutdown on SIGINT/SIGTERM
+  graceful_shutdown: true
+
+logging:
+  # Log level: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  level: "INFO"
+
+  # Log file path (null for no file logging)
+  file: "data/logs/extractor.log"
+
+  # Maximum log file size in bytes before rotation (10MB)
+  max_bytes: 10485760
+
+  # Number of backup log files to keep
+  backup_count: 5
+
+  # Use JSON format for log files (useful for log aggregation)
+  json_format: false
+
+# Rate limiting detection patterns
+rate_limiting:
+  # Strings that indicate rate limiting in error messages
+  patterns:
+    - "too many requests"
+    - "rate limit"
+    - "429"
+    - "blocked"
+    - "sign in to confirm"
+
+  # Default wait time when rate limited (seconds)
+  default_wait: 60
+
+# VPN regions known to work (for documentation/reference)
+vpn_regions:
+  working:
+    - "Australia"
+    - "South Africa"
+  blocked:
+    - "Mexico"
+    - "US"
+    - "UK"
+    - "Germany"
