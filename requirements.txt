@@ -1,5 +1,5 @@
 # Existing dependencies
-youtube-transcript-api==0.6.2
+youtube-transcript-api>=1.0.0
 yt-dlp==2024.12.6
 sqlite-utils==3.37
 python-dotenv==1.0.1

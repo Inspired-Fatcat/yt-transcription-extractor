@@ -4,6 +4,15 @@ All notable changes to the YT Transcription Extractor project.
 
 ---
 
+## [2025-12-30]
+
+### Fixed
+- **Updated youtube-transcript-api compatibility** for v1.2.3
+  - Changed `TooManyRequests` exception to `RequestBlocked, IpBlocked` in `src/transcript.py`
+  - Updated `requirements.txt` to use `>=1.0.0` instead of pinned `0.6.2`
+
+---
+
 ## [2025-12-20]
 
 ### Added

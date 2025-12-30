@@ -8,7 +8,8 @@ from youtube_transcript_api._errors import (
     NoTranscriptFound,
     TranscriptsDisabled,
     VideoUnavailable,
-    TooManyRequests,
+    RequestBlocked,
+    IpBlocked,
 )
 
 from .exceptions import (
@@ -196,7 +197,7 @@ def get_transcript(
             raise VideoNotFoundError(video_id, reason="Video unavailable or private")
         return None
 
-    except TooManyRequests as e:
+    except (RequestBlocked, IpBlocked) as e:
         logger.error(f"Rate limited by YouTube for video '{video_id}'")
         if raise_on_error:
             raise RateLimitError(video_id=video_id, retry_after=60)
@@ -250,7 +251,7 @@ def get_available_languages(video_id: str) -> list[dict]:
         logger.debug(f"Video unavailable: '{video_id}'")
         return []
 
-    except TooManyRequests:
+    except (RequestBlocked, IpBlocked):
         logger.warning(f"Rate limited when fetching languages for '{video_id}'")
         return []
 
